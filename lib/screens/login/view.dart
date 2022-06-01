@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internsforyou/screens/login/controller.dart';
 import 'package:internsforyou/theme/ify_custom_theme.dart';
+import 'package:internsforyou/utils/routes/app_routes.dart';
 import 'widgets/ify_textfields.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class Static_LoginScreen {
+  static bool isLoggedIn = false;
   static final _formKey = GlobalKey<FormState>();
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController =
@@ -66,6 +69,7 @@ class LoginScreen extends GetView<LoginController> {
                           onPressed: () {
                             if (Static_LoginScreen._formKey.currentState!
                                 .validate()) {
+                              doUserLogin();
                               debugPrint(
                                   "Username: ${Static_LoginScreen.emailController.text}\nPassword: ${Static_LoginScreen.passwordController.text}");
                               //TODO: Continue if passed
@@ -76,7 +80,9 @@ class LoginScreen extends GetView<LoginController> {
                         ),
                       ),
                       ElevatedButton(
-                          onPressed: () {}, //TODO: Handle on press
+                          onPressed: () {
+                            Get.toNamed(AppRoutes.introScreen);
+                          }, //TODO: Handle on press
                           child: const Text('Register'),
                           style: IFYButtons.secondaryButton),
                     ],
@@ -88,5 +94,37 @@ class LoginScreen extends GetView<LoginController> {
         ),
       ),
     );
+  }
+
+  void doUserLogin() async {
+    final username = Static_LoginScreen.emailController.text.trim();
+    final password = Static_LoginScreen.passwordController.text.trim();
+
+    final user = ParseUser(username, password, null);
+
+    var response = await user.login();
+
+    if (response.success) {
+      //showSuccess("User was successfully login!");
+      //Sign_in_Success.username_pass = username;
+      Static_LoginScreen.isLoggedIn = true;
+      debugPrint("User signed in" + Static_LoginScreen.isLoggedIn.toString());
+      Get.toNamed(AppRoutes.browseInternScreen);
+    } else {
+      //showError(response.error!.message);
+    }
+  }
+
+  void doUserLogout() async {
+    final user = await ParseUser.currentUser() as ParseUser;
+    var response = await user.logout();
+
+    if (response.success) {
+      //showSuccess("User was successfully logout!");
+      Static_LoginScreen.isLoggedIn = false;
+      debugPrint("User logged out" + Static_LoginScreen.isLoggedIn.toString());
+    } else {
+      //showError(response.error!.message);
+    }
   }
 }

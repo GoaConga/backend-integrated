@@ -66,7 +66,8 @@ class IntroScreen extends GetView<IntroController> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.toNamed(AppRoutes.browseInternScreen);
+                          Get.toNamed(AppRoutes
+                              .introSelectionScreen); //browseInternScreen
                         },
                         child: const Text('next'),
                         style: IFYButtons.textButton,
