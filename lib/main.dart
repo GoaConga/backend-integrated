@@ -32,7 +32,7 @@ class InternApp extends StatelessWidget {
       locale: const Locale('en', 'US'),
       title: 'Interns For You',
       initialBinding: InitialBindings(),
-      initialRoute: AppRoutes.introScreen,
+      initialRoute: AppRoutes.registerScreen,
       getPages: AppRoutes.pages,
       localizationsDelegates: const [FormBuilderLocalizations.delegate],
     );

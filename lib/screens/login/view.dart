@@ -115,7 +115,7 @@ class LoginScreen extends GetView<LoginController> {
     }
   }
 
-  void doUserLogout() async {
+  static void doUserLogout() async {
     final user = await ParseUser.currentUser() as ParseUser;
     var response = await user.logout();
 

@@ -83,8 +83,6 @@ class RegisterScreen extends GetView<RegisterController> {
                             if (Static_RegisterScreen._formKey.currentState!
                                 .validate()) {
                               doUserRegistration();
-                              Get.toNamed(AppRoutes
-                                  .userSkillsScreen); // detailsFormScreen
                               debugPrint(
                                   "Username: ${Static_RegisterScreen.emailController.text}\nPassword: ${Static_RegisterScreen.passwordController.text}");
                               //TODO: Continue if passed
@@ -116,8 +114,10 @@ class RegisterScreen extends GetView<RegisterController> {
 
     if (response.success) {
       //showSuccess();
+      Get.toNamed(AppRoutes.userSkillsScreen);
     } else {
       //showError(response.error!.message);
+      debugPrint('email exists');
     }
   }
 }
