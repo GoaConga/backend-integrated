@@ -53,7 +53,7 @@ class UserSkillScreen extends GetView<RegisterController> {
                     ),
                     SizedBox(
                       height: 600,
-                      width: 800,
+                      width: MediaQuery.of(context).size.width,
                       child: Slider_MyApp(),
                     ),
                   ],
@@ -113,98 +113,111 @@ class _Slider_bar extends State<Slider_bar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      Text(
-        'C',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      ),
-      Slider(
-        value: Static_UserSkillScreen.skills_slider[0],
-        min: 0,
-        max: 100,
-        divisions: 10,
-        label: Static_UserSkillScreen.skills_slider[0].toString() + '%',
-        activeColor: Colors.red,
-        thumbColor: Colors.blue,
-        onChanged: (value) {
-          setState(() {
-            Static_UserSkillScreen.skills_slider[0] = value;
-          });
-        },
-      ),
-      Text(
-        'Java',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      ),
-      Slider(
-        value: Static_UserSkillScreen.skills_slider[1],
-        min: 0,
-        max: 100,
-        divisions: 10,
-        label: Static_UserSkillScreen.skills_slider[1].toString() + '%',
-        activeColor: Colors.red,
-        thumbColor: Colors.blue,
-        onChanged: (value) {
-          setState(() {
-            Static_UserSkillScreen.skills_slider[1] = value;
-          });
-        },
-      ),
-      Text(
-        'Python',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      ),
-      Slider(
-        value: Static_UserSkillScreen.skills_slider[2],
-        min: 0,
-        max: 100,
-        divisions: 10,
-        label: Static_UserSkillScreen.skills_slider[2].toString() + '%',
-        activeColor: Colors.red,
-        thumbColor: Colors.blue,
-        onChanged: (value) {
-          setState(() {
-            Static_UserSkillScreen.skills_slider[2] = value;
-          });
-        },
-      ),
-      Text(
-        'PHP',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      ),
-      Slider(
-        value: Static_UserSkillScreen.skills_slider[3],
-        min: 0,
-        max: 100,
-        divisions: 10,
-        label: Static_UserSkillScreen.skills_slider[3].toString() + '%',
-        activeColor: Colors.red,
-        thumbColor: Colors.blue,
-        onChanged: (value) {
-          setState(() {
-            Static_UserSkillScreen.skills_slider[3] = value;
-          });
-        },
-      ),
-      Text(
-        'CSS',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
-      ),
-      Slider(
-        value: Static_UserSkillScreen.skills_slider[4],
-        min: 0,
-        max: 100,
-        divisions: 10,
-        label: Static_UserSkillScreen.skills_slider[4].toString() + '%',
-        activeColor: Colors.red,
-        thumbColor: Colors.blue,
-        onChanged: (value) {
-          setState(() {
-            Static_UserSkillScreen.skills_slider[4] = value;
-          });
-        },
-      )
-    ]));
+        body: Container(
+            color: Color.fromARGB(255, 68, 67, 67),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'C',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                  ),
+                  Slider(
+                    value: Static_UserSkillScreen.skills_slider[0],
+                    min: 0,
+                    max: 100,
+                    divisions: 10,
+                    label: Static_UserSkillScreen.skills_slider[0].toString() +
+                        '%',
+                    activeColor: Colors.red,
+                    thumbColor: Colors.red,
+                    onChanged: (value) {
+                      setState(() {
+                        Static_UserSkillScreen.skills_slider[0] = value;
+                      });
+                    },
+                  ),
+                  Text(
+                    'Java',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                  ),
+                  Slider(
+                    value: Static_UserSkillScreen.skills_slider[1],
+                    min: 0,
+                    max: 100,
+                    divisions: 10,
+                    label: Static_UserSkillScreen.skills_slider[1].toString() +
+                        '%',
+                    activeColor: Colors.red,
+                    thumbColor: Colors.red,
+                    onChanged: (value) {
+                      setState(() {
+                        Static_UserSkillScreen.skills_slider[1] = value;
+                      });
+                    },
+                  ),
+                  Text(
+                    'Python',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                  ),
+                  Slider(
+                    value: Static_UserSkillScreen.skills_slider[2],
+                    min: 0,
+                    max: 100,
+                    divisions: 10,
+                    label: Static_UserSkillScreen.skills_slider[2].toString() +
+                        '%',
+                    activeColor: Colors.red,
+                    thumbColor: Colors.red,
+                    onChanged: (value) {
+                      setState(() {
+                        Static_UserSkillScreen.skills_slider[2] = value;
+                      });
+                    },
+                  ),
+                  Text(
+                    'PHP',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                  ),
+                  Slider(
+                    value: Static_UserSkillScreen.skills_slider[3],
+                    min: 0,
+                    max: 100,
+                    divisions: 10,
+                    label: Static_UserSkillScreen.skills_slider[3].toString() +
+                        '%',
+                    activeColor: Colors.red,
+                    thumbColor: Colors.red,
+                    onChanged: (value) {
+                      setState(() {
+                        Static_UserSkillScreen.skills_slider[3] = value;
+                      });
+                    },
+                  ),
+                  Text(
+                    'CSS',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                  ),
+                  Slider(
+                    value: Static_UserSkillScreen.skills_slider[4],
+                    min: 0,
+                    max: 100,
+                    divisions: 10,
+                    label: Static_UserSkillScreen.skills_slider[4].toString() +
+                        '%',
+                    activeColor: Colors.red,
+                    thumbColor: Colors.red,
+                    onChanged: (value) {
+                      setState(() {
+                        Static_UserSkillScreen.skills_slider[4] = value;
+                      });
+                    },
+                  )
+                ])));
   }
 }

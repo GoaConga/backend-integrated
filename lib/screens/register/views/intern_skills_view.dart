@@ -93,7 +93,7 @@ class Internship_CheckBoxes extends State<CheckboxesRoute> {
         alignment: Alignment.center,
         child: Container(
             height: 420,
-            width: 300,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: Colors.white60, borderRadius: BorderRadius.circular(10)),
             child: Column(children: [
@@ -104,13 +104,12 @@ class Internship_CheckBoxes extends State<CheckboxesRoute> {
                     Static_UserSkillsScreen.skills_checkboxes[0] = val;
                   });
                 },
-                activeColor: Colors.green,
-                title: Text("C"),
-                subtitle: Text("Day 1"),
+                activeColor: Colors.red,
+                title: Text("C", style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Divider(
-                height: 20,
-                color: Colors.green,
+                height: 5,
+                color: Color.fromARGB(255, 68, 67, 67),
               ),
               CheckboxListTile(
                 value: Static_UserSkillsScreen.skills_checkboxes[1],
@@ -119,13 +118,13 @@ class Internship_CheckBoxes extends State<CheckboxesRoute> {
                     Static_UserSkillsScreen.skills_checkboxes[1] = val;
                   });
                 },
-                activeColor: Colors.green,
-                title: Text("Java"),
-                subtitle: Text("Day 2"),
+                activeColor: Colors.red,
+                title:
+                    Text("Java", style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Divider(
-                height: 20,
-                color: Colors.green,
+                height: 5,
+                color: Color.fromARGB(255, 68, 67, 67),
               ),
               CheckboxListTile(
                 value: Static_UserSkillsScreen.skills_checkboxes[2],
@@ -134,13 +133,13 @@ class Internship_CheckBoxes extends State<CheckboxesRoute> {
                     Static_UserSkillsScreen.skills_checkboxes[2] = val;
                   });
                 },
-                activeColor: Colors.green,
-                title: Text("Python"),
-                subtitle: Text("Day 3"),
+                activeColor: Colors.red,
+                title: Text("Python",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Divider(
-                height: 20,
-                color: Colors.green,
+                height: 5,
+                color: Color.fromARGB(255, 68, 67, 67),
               ),
               CheckboxListTile(
                 value: Static_UserSkillsScreen.skills_checkboxes[3],
@@ -149,13 +148,13 @@ class Internship_CheckBoxes extends State<CheckboxesRoute> {
                     Static_UserSkillsScreen.skills_checkboxes[3] = val;
                   });
                 },
-                activeColor: Colors.green,
-                title: Text("PHP"),
-                subtitle: Text("Day 3"),
+                activeColor: Colors.red,
+                title:
+                    Text("PHP", style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Divider(
-                height: 20,
-                color: Colors.green,
+                height: 5,
+                color: Color.fromARGB(255, 68, 67, 67),
               ),
               CheckboxListTile(
                 value: Static_UserSkillsScreen.skills_checkboxes[4],
@@ -164,13 +163,13 @@ class Internship_CheckBoxes extends State<CheckboxesRoute> {
                     Static_UserSkillsScreen.skills_checkboxes[4] = val;
                   });
                 },
-                activeColor: Colors.green,
-                title: Text("CSS"),
-                subtitle: Text("Day 3"),
+                activeColor: Colors.red,
+                title:
+                    Text("CSS", style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Divider(
-                height: 20,
-                color: Colors.green,
+                height: 5,
+                color: Color.fromARGB(255, 68, 67, 67),
               ),
             ])),
       )
