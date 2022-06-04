@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:internsforyou/models/student/skills.dart';
+import 'package:internsforyou/models/job_listing/job_listing.dart';
 import 'package:internsforyou/screens/register/controller.dart';
 import 'package:internsforyou/screens/register/widgets/skill_slider.dart';
 import 'package:internsforyou/theme/ify_custom_theme.dart';
 import 'package:get/get.dart';
-import 'package:internsforyou/utils/routes/app_routes.dart';
-
-import '../widgets/ify_textfields.dart';
 
 class Static_UserSkillScreen {
   static final bool isCompany = true;
@@ -68,7 +65,13 @@ class UserSkillScreen extends GetView<RegisterController> {
                       child: ElevatedButton(
                         child: const Text('Next'),
                         style: IFYButtons.primaryButton,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DisplaySaveGalleryPage()),
+                          );
+                        },
                       ),
                     ),
                   ],
@@ -114,16 +117,13 @@ class _Slider_bar extends State<Slider_bar> {
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       Text(
         'C',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        height: 20,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
       Slider(
         value: Static_UserSkillScreen.skills_slider[0],
         min: 0,
-        max: 10,
-        divisions: 4,
+        max: 100,
+        divisions: 10,
         label: Static_UserSkillScreen.skills_slider[0].toString() + '%',
         activeColor: Colors.red,
         thumbColor: Colors.blue,
@@ -135,16 +135,13 @@ class _Slider_bar extends State<Slider_bar> {
       ),
       Text(
         'Java',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        height: 20,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
       Slider(
         value: Static_UserSkillScreen.skills_slider[1],
         min: 0,
-        max: 10,
-        divisions: 4,
+        max: 100,
+        divisions: 10,
         label: Static_UserSkillScreen.skills_slider[1].toString() + '%',
         activeColor: Colors.red,
         thumbColor: Colors.blue,
@@ -156,16 +153,13 @@ class _Slider_bar extends State<Slider_bar> {
       ),
       Text(
         'Python',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        height: 20,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
       Slider(
         value: Static_UserSkillScreen.skills_slider[2],
         min: 0,
-        max: 10,
-        divisions: 4,
+        max: 100,
+        divisions: 10,
         label: Static_UserSkillScreen.skills_slider[2].toString() + '%',
         activeColor: Colors.red,
         thumbColor: Colors.blue,
@@ -177,16 +171,13 @@ class _Slider_bar extends State<Slider_bar> {
       ),
       Text(
         'PHP',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        height: 20,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
       Slider(
         value: Static_UserSkillScreen.skills_slider[3],
         min: 0,
-        max: 10,
-        divisions: 4,
+        max: 100,
+        divisions: 10,
         label: Static_UserSkillScreen.skills_slider[3].toString() + '%',
         activeColor: Colors.red,
         thumbColor: Colors.blue,
@@ -198,16 +189,13 @@ class _Slider_bar extends State<Slider_bar> {
       ),
       Text(
         'CSS',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        height: 20,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
       ),
       Slider(
         value: Static_UserSkillScreen.skills_slider[4],
         min: 0,
-        max: 10,
-        divisions: 4,
+        max: 100,
+        divisions: 10,
         label: Static_UserSkillScreen.skills_slider[4].toString() + '%',
         activeColor: Colors.red,
         thumbColor: Colors.blue,

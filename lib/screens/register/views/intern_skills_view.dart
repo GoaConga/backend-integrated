@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:internsforyou/models/student/skills.dart';
 import 'package:internsforyou/screens/register/controller.dart';
 import 'package:internsforyou/screens/register/widgets/skill_widget.dart';
 import 'package:internsforyou/theme/ify_custom_theme.dart';
 import 'package:get/get.dart';
 import 'package:internsforyou/utils/routes/app_routes.dart';
-
-import '../widgets/ify_textfields.dart';
 
 class Static_UserSkillsScreen {
   static final bool isCompany = true;
