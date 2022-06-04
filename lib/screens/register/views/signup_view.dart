@@ -114,7 +114,7 @@ class RegisterScreen extends GetView<RegisterController> {
 
     if (response.success) {
       //showSuccess();
-      Get.toNamed(AppRoutes.userSkillsScreen);
+      Get.toNamed(AppRoutes.detailsFormScreen);
     } else {
       //showError(response.error!.message);
       debugPrint('email exists');

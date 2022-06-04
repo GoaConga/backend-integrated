@@ -11,19 +11,17 @@ import '../widgets/ify_textfields.dart';
 class Static_UserSkillScreen {
   static final bool isCompany = true;
 
-  static List<Skills> skills = [
-    Skills(skillName: 'java'),
-    Skills(skillName: 'javascript'),
-    Skills(skillName: 'C#'),
-    Skills(skillName: 'C++'),
-    Skills(skillName: 'Flutter'),
-    Skills(skillName: 'Doobers'),
-    Skills(skillName: 'Laravel'),
-    Skills(skillName: 'Dart'),
-    Skills(skillName: 'SQL'),
-    Skills(skillName: 'HTML'),
-    Skills(skillName: 'CSS'),
-    Skills(skillName: 'bootstrap'),
+  static double _C_value = 0;
+  static double _java_value = 0;
+  static double _python_value = 0;
+  static double _php_value = 0;
+  static double _CSS_value = 0;
+  static List<double> skills_slider = [
+    _C_value,
+    _java_value,
+    _python_value,
+    _php_value,
+    _CSS_value
   ];
 }
 
@@ -56,18 +54,11 @@ class UserSkillScreen extends GetView<RegisterController> {
                         style: IFYFonts.inputPreText,
                       ),
                     ),
-                    SizedBox.fromSize(
-                      size: const Size.fromHeight(400),
-                      child: ListView.builder(
-                          clipBehavior: Clip.hardEdge,
-                          itemCount: Static_UserSkillScreen.skills.length,
-                          itemBuilder: (BuildContext context, index) {
-                            SkillSlider _ = SkillSlider(
-                                skill: Static_UserSkillScreen.skills[index]);
-                            checkedSkills.add(_);
-                            return _;
-                          }),
-                    )
+                    SizedBox(
+                      height: 600,
+                      width: 800,
+                      child: Slider_MyApp(),
+                    ),
                   ],
                 ),
                 Column(
@@ -88,5 +79,144 @@ class UserSkillScreen extends GetView<RegisterController> {
         ),
       ),
     );
+  }
+}
+
+class Slider_MyApp extends StatelessWidget {
+  const Slider_MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const Slider_bar(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class Slider_bar extends StatefulWidget {
+  const Slider_bar({Key? key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  State<Slider_bar> createState() => _Slider_bar();
+}
+
+class _Slider_bar extends State<Slider_bar> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      Text(
+        'C',
+        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      Slider(
+        value: Static_UserSkillScreen.skills_slider[0],
+        min: 0,
+        max: 10,
+        divisions: 4,
+        label: Static_UserSkillScreen.skills_slider[0].toString() + '%',
+        activeColor: Colors.red,
+        thumbColor: Colors.blue,
+        onChanged: (value) {
+          setState(() {
+            Static_UserSkillScreen.skills_slider[0] = value;
+          });
+        },
+      ),
+      Text(
+        'Java',
+        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      Slider(
+        value: Static_UserSkillScreen.skills_slider[1],
+        min: 0,
+        max: 10,
+        divisions: 4,
+        label: Static_UserSkillScreen.skills_slider[1].toString() + '%',
+        activeColor: Colors.red,
+        thumbColor: Colors.blue,
+        onChanged: (value) {
+          setState(() {
+            Static_UserSkillScreen.skills_slider[1] = value;
+          });
+        },
+      ),
+      Text(
+        'Python',
+        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      Slider(
+        value: Static_UserSkillScreen.skills_slider[2],
+        min: 0,
+        max: 10,
+        divisions: 4,
+        label: Static_UserSkillScreen.skills_slider[2].toString() + '%',
+        activeColor: Colors.red,
+        thumbColor: Colors.blue,
+        onChanged: (value) {
+          setState(() {
+            Static_UserSkillScreen.skills_slider[2] = value;
+          });
+        },
+      ),
+      Text(
+        'PHP',
+        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      Slider(
+        value: Static_UserSkillScreen.skills_slider[3],
+        min: 0,
+        max: 10,
+        divisions: 4,
+        label: Static_UserSkillScreen.skills_slider[3].toString() + '%',
+        activeColor: Colors.red,
+        thumbColor: Colors.blue,
+        onChanged: (value) {
+          setState(() {
+            Static_UserSkillScreen.skills_slider[3] = value;
+          });
+        },
+      ),
+      Text(
+        'CSS',
+        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(
+        height: 20,
+      ),
+      Slider(
+        value: Static_UserSkillScreen.skills_slider[4],
+        min: 0,
+        max: 10,
+        divisions: 4,
+        label: Static_UserSkillScreen.skills_slider[4].toString() + '%',
+        activeColor: Colors.red,
+        thumbColor: Colors.blue,
+        onChanged: (value) {
+          setState(() {
+            Static_UserSkillScreen.skills_slider[4] = value;
+          });
+        },
+      )
+    ]));
   }
 }

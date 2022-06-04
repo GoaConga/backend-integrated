@@ -64,7 +64,7 @@ class AppRoutes {
         binding: BrowseBinding()),
     GetPage(
         name: userSkillScreen,
-        page: () => UserSkillsScreen(),
+        page: () => UserSkillScreen(),
         binding: BrowseBinding()),
     GetPage(
         name: userSkillsScreen,

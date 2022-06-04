@@ -11,20 +11,13 @@ import '../widgets/ify_textfields.dart';
 class Static_UserSkillsScreen {
   static final bool isCompany = true;
 
-  static List<Skills> skills = [
-    Skills(skillName: 'java'),
-    Skills(skillName: 'javascript'),
-    Skills(skillName: 'C#'),
-    Skills(skillName: 'C++'),
-    Skills(skillName: 'Flutter'),
-    Skills(skillName: 'Doobers'),
-    Skills(skillName: 'Laravel'),
-    Skills(skillName: 'Dart'),
-    Skills(skillName: 'SQL'),
-    Skills(skillName: 'HTML'),
-    Skills(skillName: 'CSS'),
-    Skills(skillName: 'bootstrap'),
-  ];
+  static bool? C = false;
+  static bool? java = false;
+  static bool? python = false;
+  static bool? php = false;
+  static bool? CSS = false;
+
+  static List<bool?> skills_checkboxes = [C, java, python, php, CSS];
 }
 
 class UserSkillsScreen extends GetView<RegisterController> {
@@ -56,19 +49,10 @@ class UserSkillsScreen extends GetView<RegisterController> {
                         style: IFYFonts.inputPreText,
                       ),
                     ),
-                    SizedBox.fromSize(
-                      size: const Size.fromHeight(400),
-                      child: ListView.builder(
-                          clipBehavior: Clip.hardEdge,
-                          itemCount: Static_UserSkillsScreen.skills.length,
-                          itemBuilder: (BuildContext context, index) {
-                            SkillTile _ = SkillTile(
-                                skill: Static_UserSkillsScreen.skills[index],
-                                isChecked: false);
-                            checkedSkills.add(_);
-                            return _;
-                          }),
-                    )
+                    SizedBox(
+                      height: 510,
+                      child: CheckboxesRoute(),
+                    ),
                   ],
                 ),
                 Column(
@@ -96,5 +80,103 @@ class UserSkillsScreen extends GetView<RegisterController> {
         ),
       ),
     );
+  }
+}
+
+class CheckboxesRoute extends StatefulWidget {
+  @override
+  Internship_CheckBoxes createState() => Internship_CheckBoxes();
+}
+
+class Internship_CheckBoxes extends State<CheckboxesRoute> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: <Widget>[
+      Align(
+        alignment: Alignment.center,
+        child: Container(
+            height: 420,
+            width: 300,
+            decoration: BoxDecoration(
+                color: Colors.white60, borderRadius: BorderRadius.circular(10)),
+            child: Column(children: [
+              CheckboxListTile(
+                value: Static_UserSkillsScreen.skills_checkboxes[0],
+                onChanged: (val) {
+                  setState(() {
+                    Static_UserSkillsScreen.skills_checkboxes[0] = val;
+                  });
+                },
+                activeColor: Colors.green,
+                title: Text("C"),
+                subtitle: Text("Day 1"),
+              ),
+              Divider(
+                height: 20,
+                color: Colors.green,
+              ),
+              CheckboxListTile(
+                value: Static_UserSkillsScreen.skills_checkboxes[1],
+                onChanged: (val) {
+                  setState(() {
+                    Static_UserSkillsScreen.skills_checkboxes[1] = val;
+                  });
+                },
+                activeColor: Colors.green,
+                title: Text("Java"),
+                subtitle: Text("Day 2"),
+              ),
+              Divider(
+                height: 20,
+                color: Colors.green,
+              ),
+              CheckboxListTile(
+                value: Static_UserSkillsScreen.skills_checkboxes[2],
+                onChanged: (val) {
+                  setState(() {
+                    Static_UserSkillsScreen.skills_checkboxes[2] = val;
+                  });
+                },
+                activeColor: Colors.green,
+                title: Text("Python"),
+                subtitle: Text("Day 3"),
+              ),
+              Divider(
+                height: 20,
+                color: Colors.green,
+              ),
+              CheckboxListTile(
+                value: Static_UserSkillsScreen.skills_checkboxes[3],
+                onChanged: (val) {
+                  setState(() {
+                    Static_UserSkillsScreen.skills_checkboxes[3] = val;
+                  });
+                },
+                activeColor: Colors.green,
+                title: Text("PHP"),
+                subtitle: Text("Day 3"),
+              ),
+              Divider(
+                height: 20,
+                color: Colors.green,
+              ),
+              CheckboxListTile(
+                value: Static_UserSkillsScreen.skills_checkboxes[4],
+                onChanged: (val) {
+                  setState(() {
+                    Static_UserSkillsScreen.skills_checkboxes[4] = val;
+                  });
+                },
+                activeColor: Colors.green,
+                title: Text("CSS"),
+                subtitle: Text("Day 3"),
+              ),
+              Divider(
+                height: 20,
+                color: Colors.green,
+              ),
+            ])),
+      )
+    ]);
   }
 }
