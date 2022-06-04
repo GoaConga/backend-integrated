@@ -56,7 +56,7 @@ class AppRoutes {
         name: loginScreen, page: () => LoginScreen(), binding: LoginBinding()),
     GetPage(
         name: browseInternScreen,
-        page: () => const BrowseInternScreen(),
+        page: () => BrowseInternScreen(),
         binding: BrowseBinding()),
     GetPage(
         name: showInternScreen,

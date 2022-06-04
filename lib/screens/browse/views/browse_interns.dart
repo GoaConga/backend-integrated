@@ -7,9 +7,48 @@ import 'package:internsforyou/screens/browse/widgets/intern_tile.dart';
 import 'package:internsforyou/screens/login/view.dart';
 import 'package:internsforyou/theme/ify_custom_theme.dart';
 import 'package:internsforyou/utils/routes/app_routes.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class BrowseInternScreen extends GetView<BrowseController> {
-  const BrowseInternScreen({Key? key}) : super(key: key);
+  BrowseInternScreen({Key? key}) : super(key: key);
+
+  List<ParseObject> results = <ParseObject>[];
+  final todo_username_controller = TextEditingController();
+
+  void doQueryByName() async {
+    // Create your query
+    final QueryBuilder<ParseObject> parseQuery =
+        QueryBuilder<ParseObject>(ParseObject('internsforyou'));
+
+    // `whereContains` is a basic query method that checks if string field
+    // contains a specific substring
+    parseQuery.whereContains(
+        dropdownvalue, todo_username_controller.text.trim());
+
+    // The query will resolve only after calling this method, retrieving
+    // an array of `ParseObjects`, if success
+    final ParseResponse apiResponse = await parseQuery.query();
+
+    if (apiResponse.success && apiResponse.results != null) {
+      // Let's show the results
+      for (var o in apiResponse.results!) {
+        print((o as ParseObject).toString());
+      }
+
+      results = apiResponse.results as List<ParseObject>;
+    } else {
+      results = [];
+    }
+  }
+
+  String dropdownvalue = 'email';
+
+  // List of items in our dropdown menu
+  var items = [
+    'email',
+    'company',
+    'bio',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -21,39 +60,172 @@ class BrowseInternScreen extends GetView<BrowseController> {
         backgroundColor: IFYColors.accentRed,
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-          child: RefreshIndicator(
-            onRefresh: () {
-              throw Exception('Test');
-            },
-            child: ListView.builder(
-                clipBehavior: Clip.hardEdge,
-                itemCount: 10,
-                itemBuilder: (BuildContext context, index) {
-                  //return InternWidget(intern: Student(score: 100-(0+index*5)));
-                  return InternTile(
-                    intern: Student(score: 100 - (0 + index * 5)),
-                    // onTap: () => Get.toNamed(AppRoutes.showInternScreen,arguments: { Student()}),
-                    onTap: () {
-                      controller.currentStudent.value =
-                          Student(score: 100 - (0 + index * 5));
-                      controller.currentStudent.value.bio =
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales lacus ut odio porttitor, eget convallis nisl finibus. Quisque cursus libero non porta efficitur. Pellentesque tincidunt condimentum viverra. Quisque tristique ornare sollicitudin. Mauris ullamcorper ut diam ut gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id nibh nec enim faucibus mattis sed at tortor. Aenean malesuada dolor metus, ut dignissim risus ullamcorper quis. Praesent sed magna quis eros semper dictum quis vitae mi. Maecenas dolor libero, efficitur eu auctor at, molestie sit amet ipsum. In tincidunt tempor pellentesque. Morbi posuere tempus odio, sed dictum nulla sollicitudin ac. Duis volutpat velit vitae massa bibendum, vel sollicitudin sapien ultricies. Sed ultrices sapien at risus dapibus, nec viverra risus volutpat. Morbi finibus fermentum ullamcorper. Sed fringilla tristique metus, ut imperdiet diam lobortis ultricies.';
-                      controller.currentStudent.value.skills = [
-                        Skills(skillName: 'Flutter', skillProficiency: 100),
-                        Skills(skillName: 'java', skillProficiency: 75),
-                        Skills(skillName: 'HTML', skillProficiency: 50),
-                        Skills(skillName: 'CSS', skillProficiency: 20),
-                      ];
-                      Get.toNamed(AppRoutes.showInternScreen);
-                    },
-                  ); //TODO: Draw from actual list of students.
-                }),
-          ),
-        ),
-      ),
+      body: SingleChildScrollView(
+          child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 34, 34, 34),
+              ),
+              //padding: const EdgeInsets.fromLTRB(12, 80, 12, 12),
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: RefreshIndicator(
+                      onRefresh: () {
+                        throw Exception('Test');
+                      },
+                      //
+                      //
+                      //
+                      //
+                      child: Column(children: <Widget>[
+                        Container(
+                            padding: EdgeInsets.fromLTRB(17.0, 1.0, 7.0, 1.0),
+                            child: Row(
+                              children: <Widget>[
+                                DropdownButton(
+                                  // Initial Value
+                                  value: dropdownvalue,
+
+                                  // Down Arrow Icon
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+
+                                  // Array list of items
+                                  items: items.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(items),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    dropdownvalue = newValue!;
+                                  },
+                                ),
+                                Expanded(
+                                  child: TextField(
+                                    autocorrect: true,
+                                    textCapitalization:
+                                        TextCapitalization.sentences,
+                                    style: TextStyle(color: Colors.white),
+                                    controller: todo_username_controller,
+                                    decoration: InputDecoration(
+                                        labelText:
+                                            "Search for " + dropdownvalue,
+                                        labelStyle: TextStyle(
+                                            color: Colors.blueAccent)),
+                                  ),
+                                ),
+                                Container(
+                                    width: 88,
+                                    child: Text(
+                                        'Result:   ${results.length}   ',
+                                        style: TextStyle(color: Colors.blue))),
+                                ElevatedButton.icon(
+                                    icon: Icon(
+                                      Icons.search,
+                                      color: Color.fromARGB(255, 255, 0, 0),
+                                      size: 40.0,
+                                    ),
+                                    label: Text('Search'),
+                                    onPressed: doQueryByName,
+                                    style: ElevatedButton.styleFrom(
+                                      shape: new RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(20.0),
+                                      ),
+                                    ))
+                              ],
+                            )),
+                        Expanded(
+                          child: FutureBuilder<List<ParseObject>>(
+                              future: getTodo(),
+                              builder: (context, snapshot) {
+                                switch (snapshot.connectionState) {
+                                  case ConnectionState.none:
+                                  case ConnectionState.waiting:
+                                    return Center(
+                                      child: Container(
+                                          width: 100,
+                                          height: 100,
+                                          child: CircularProgressIndicator()),
+                                    );
+                                  default:
+                                    if (snapshot.hasError) {
+                                      return Center(
+                                        child: Text("Error..."),
+                                      );
+                                    }
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: Text("No Data..."),
+                                      );
+                                    } else {
+                                      return ListView.builder(
+                                          padding: EdgeInsets.only(top: 10.0),
+                                          itemCount: snapshot.data!.length,
+                                          itemBuilder: (context, index) {
+                                            final varTodo =
+                                                snapshot.data![index];
+                                            final varEmail =
+                                                varTodo.get<String>('email')!;
+                                            final varCompany =
+                                                varTodo.get<String>('company')!;
+                                            final varBio =
+                                                varTodo.get<String>('bio')!;
+                                            final varBox = varTodo
+                                                .get<List>('checkboxes')!;
+                                            final varSlider =
+                                                varTodo.get<List>('sliderbar')!;
+                                            final varLogo = varTodo
+                                                .get<ParseFileBase>('file')!;
+
+                                            return InternTile(
+                                              intern:
+                                                  Student(score: varSlider[0]),
+                                              onTap: () {
+                                                controller
+                                                        .currentStudent.value =
+                                                    Student(
+                                                        score: varSlider[0]);
+                                                controller.currentStudent.value
+                                                    .bio = varBio;
+                                                controller.currentStudent.value
+                                                    .skills = [
+                                                  Skills(
+                                                      skillName: 'Flutter',
+                                                      skillProficiency:
+                                                          varSlider[0]),
+                                                  Skills(
+                                                      skillName: 'java',
+                                                      skillProficiency:
+                                                          varSlider[1]),
+                                                  Skills(
+                                                      skillName: 'HTML',
+                                                      skillProficiency:
+                                                          varSlider[2]),
+                                                  Skills(
+                                                      skillName: 'CSS',
+                                                      skillProficiency:
+                                                          varSlider[3]),
+                                                ];
+                                                Get.toNamed(
+                                                    AppRoutes.showInternScreen);
+                                              },
+                                            ); //TODO: Draw from actual list of students.
+                                          });
+                                    }
+                                }
+                              }),
+                        ),
+                      ]))))),
+      //
+      //
+      //
+      //
+      //
+      //
+      //
+      //
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: IFYColors.accentRed,
@@ -112,5 +284,20 @@ class BrowseInternScreen extends GetView<BrowseController> {
         ),
       ),
     ));
+  }
+
+  Future<List<ParseObject>> getTodo() async {
+    QueryBuilder<ParseObject> queryTodo =
+        QueryBuilder<ParseObject>(ParseObject('internsforyou'));
+    //queryTodo.whereContains('password', 'w456456');
+    queryTodo.whereContains(
+        dropdownvalue, todo_username_controller.text.trim());
+    final ParseResponse apiResponse = await queryTodo.query();
+
+    if (apiResponse.success && apiResponse.results != null) {
+      return apiResponse.results as List<ParseObject>;
+    } else {
+      return [];
+    }
   }
 }
