@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internsforyou/models/student/skills.dart';
+import 'package:internsforyou/screens/register/views/details_name_view.dart';
 import 'package:internsforyou/screens/register/views/details_view.dart';
 import 'package:internsforyou/screens/register/views/intern_profficiency_view.dart';
 import 'package:internsforyou/screens/register/views/intern_skills_view.dart';
@@ -156,6 +157,15 @@ class _SaveDataPageState extends State<SaveDataPage> {
                             ..set(
                                 'password',
                                 Static_RegisterScreen.passwordController.text
+                                    .trim())
+                            ..set(
+                                'first_name',
+                                Static_NameDetailsScreen
+                                    .firstnameController.text
+                                    .trim())
+                            ..set(
+                                'last_name',
+                                Static_NameDetailsScreen.lastnameController.text
                                     .trim())
                             ..set(
                                 'company',

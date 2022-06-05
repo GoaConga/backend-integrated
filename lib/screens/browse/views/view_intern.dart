@@ -27,6 +27,26 @@ class InternScreen extends GetView<BrowseController> {
 
   @override
   Widget build(BuildContext context) {
+    void showEmail(String message) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(controller.currentStudent.value.email),
+            content: Text('Message via Email'),
+            actions: <Widget>[
+              new TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
         extendBody: true,
         appBar: AppBar(
@@ -119,6 +139,7 @@ class InternScreen extends GetView<BrowseController> {
                           children: [
                             ElevatedButton(
                                 onPressed: () {
+                                  showEmail('message');
                                   debugPrint(
                                       controller.currentStudent.value.email);
                                 },
@@ -126,6 +147,7 @@ class InternScreen extends GetView<BrowseController> {
                                 child: const Text('Message')),
                             ElevatedButton(
                                 onPressed: () {
+                                  showEmail('message');
                                   debugPrint(
                                       controller.currentStudent.value.email);
                                 },

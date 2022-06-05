@@ -52,13 +52,86 @@ class BrowseInternScreen extends GetView<BrowseController> {
 
   @override
   Widget build(BuildContext context) {
+    void showSearchBar(String message) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(controller.currentStudent.value.email),
+            content: Text('Message via Email'),
+            actions: <Widget>[
+              Container(
+                  padding: EdgeInsets.fromLTRB(17.0, 1.0, 7.0, 1.0),
+                  child: Row(
+                    children: <Widget>[
+                      DropdownButton(
+                        value: dropdownvalue,
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: items.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(items),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          dropdownvalue = newValue!;
+                        },
+                      ),
+                      Expanded(
+                        child: TextField(
+                          autocorrect: true,
+                          textCapitalization: TextCapitalization.sentences,
+                          style: TextStyle(color: Colors.white),
+                          controller: todo_username_controller,
+                          decoration: InputDecoration(
+                              labelText: "Search for " + dropdownvalue,
+                              labelStyle: TextStyle(color: Colors.blueAccent)),
+                        ),
+                      ),
+                      Container(
+                          width: 88,
+                          child: Text('Result:   ${results.length}   ',
+                              style: TextStyle(color: Colors.blue))),
+                      ElevatedButton.icon(
+                          icon: Icon(
+                            Icons.search,
+                            color: Color.fromARGB(255, 255, 0, 0),
+                            size: 40.0,
+                          ),
+                          label: Text('Search'),
+                          onPressed: doQueryByName,
+                          style: ElevatedButton.styleFrom(
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(20.0),
+                            ),
+                          ))
+                    ],
+                  )),
+              new TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
         title: Text('Browsing Interns', style: IFYFonts.introHeader),
         centerTitle: true,
         backgroundColor: IFYColors.accentRed,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearchBar('Serach function');
+              },
+              icon: const Icon(Icons.search))
+        ],
       ),
       body: Center(
           child: Padding(
@@ -97,6 +170,10 @@ class BrowseInternScreen extends GetView<BrowseController> {
                                     final varTodo = snapshot.data![index];
                                     final varEmail =
                                         varTodo.get<String>('email')!;
+                                    final varFirst =
+                                        varTodo.get<String>('first_name')!;
+                                    final varLast =
+                                        varTodo.get<String>('last_name')!;
                                     final varCompany =
                                         varTodo.get<String>('company')!;
                                     final varBio = varTodo.get<String>('bio')!;
@@ -119,6 +196,10 @@ class BrowseInternScreen extends GetView<BrowseController> {
                                             Student(score: average);
                                         controller.currentStudent.value.email =
                                             varEmail;
+                                        controller.currentStudent.value
+                                            .firstName = varFirst;
+                                        controller.currentStudent.value
+                                            .firstName = varLast;
                                         controller.currentStudent.value.bio =
                                             varBio;
                                         Static_InternScreen.user_login =

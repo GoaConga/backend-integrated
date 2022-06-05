@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
 import 'package:internsforyou/screens/browse/binding.dart';
 import 'package:internsforyou/screens/browse/views/browse_interns.dart';
-import 'package:internsforyou/screens/browse/views/sign_in.dart';
+import 'package:internsforyou/screens/browse/views/user_setting.dart';
 import 'package:internsforyou/screens/browse/views/view_intern.dart';
 import 'package:internsforyou/screens/intro/views/guest_view.dart';
 import 'package:internsforyou/screens/intro/views/selection_view.dart';
 import 'package:internsforyou/screens/register/binding.dart';
+import 'package:internsforyou/screens/register/views/details_name_view.dart';
 import 'package:internsforyou/screens/register/views/details_view.dart';
 import 'package:internsforyou/screens/register/views/intern_skills_view.dart';
 import 'package:internsforyou/screens/register/views/signup_view.dart';
@@ -29,6 +30,7 @@ class AppRoutes {
   static String userSkillScreen = '/skill';
   static String userSkillsScreen = '/skills';
   static String updateDetailScreen = '/update';
+  static String nameDetailScreen = '/name';
 
   static List<GetPage> pages = [
     GetPage(
@@ -72,6 +74,10 @@ class AppRoutes {
     GetPage(
         name: updateDetailScreen,
         page: () => Sign_in_Home(),
+        binding: BrowseBinding()),
+    GetPage(
+        name: nameDetailScreen,
+        page: () => NameDetailsScreen(),
         binding: BrowseBinding()),
   ];
 }
