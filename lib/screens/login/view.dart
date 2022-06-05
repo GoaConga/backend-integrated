@@ -76,6 +76,7 @@ class LoginScreen extends GetView<LoginController> {
                               Sign_in_Success.username_pass = Static_LoginScreen
                                   .emailController.text
                                   .trim();
+                              doUserLogin();
                               debugPrint(
                                   "Username: ${Static_LoginScreen.emailController.text}\nPassword: ${Static_LoginScreen.passwordController.text}");
                               //TODO: Continue if passed
