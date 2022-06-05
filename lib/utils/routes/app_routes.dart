@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:get/get.dart';
-import 'package:internsforyou/models/student/student.dart';
 import 'package:internsforyou/screens/browse/binding.dart';
 import 'package:internsforyou/screens/browse/views/browse_interns.dart';
+import 'package:internsforyou/screens/browse/views/sign_in.dart';
 import 'package:internsforyou/screens/browse/views/view_intern.dart';
 import 'package:internsforyou/screens/intro/views/guest_view.dart';
 import 'package:internsforyou/screens/intro/views/selection_view.dart';
@@ -11,7 +9,7 @@ import 'package:internsforyou/screens/register/binding.dart';
 import 'package:internsforyou/screens/register/views/details_view.dart';
 import 'package:internsforyou/screens/register/views/intern_skills_view.dart';
 import 'package:internsforyou/screens/register/views/signup_view.dart';
-import 'package:internsforyou/utils/math_utils.dart';
+import 'package:internsforyou/setup/setup_main.dart';
 
 import '../../screens/intro/binding.dart';
 import '../../screens/intro/views/intro_view.dart';
@@ -30,6 +28,7 @@ class AppRoutes {
   static String showInternScreen = '/browse/intern/';
   static String userSkillScreen = '/skill';
   static String userSkillsScreen = '/skills';
+  static String updateDetailScreen = '/update';
 
   static List<GetPage> pages = [
     GetPage(
@@ -69,6 +68,10 @@ class AppRoutes {
     GetPage(
         name: userSkillsScreen,
         page: () => UserSkillsScreen(),
+        binding: BrowseBinding()),
+    GetPage(
+        name: updateDetailScreen,
+        page: () => Sign_in_Home(),
         binding: BrowseBinding()),
   ];
 }

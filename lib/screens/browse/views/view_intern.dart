@@ -4,6 +4,13 @@ import 'package:internsforyou/models/student/skills.dart';
 import 'package:internsforyou/screens/browse/controller.dart';
 import 'package:internsforyou/screens/browse/widgets/qualification_widget.dart';
 import 'package:internsforyou/theme/ify_custom_theme.dart';
+import 'package:internsforyou/utils/routes/app_routes.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+
+class Static_InternScreen {
+  static late ParseFileBase user_login;
+  static late String user_email;
+}
 
 class InternScreen extends GetView<BrowseController> {
   const InternScreen({
@@ -31,7 +38,9 @@ class InternScreen extends GetView<BrowseController> {
           centerTitle: true,
           backgroundColor: IFYColors.accentRed,
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(AppRoutes.browseInternScreen);
+            },
             icon: const Icon(Icons.arrow_back),
           ),
         ),
@@ -47,12 +56,12 @@ class InternScreen extends GetView<BrowseController> {
                     Stack(alignment: AlignmentDirectional.centerEnd, children: [
                   Container(
                       constraints: const BoxConstraints(maxHeight: 200),
-                      child: Image(
-                          image:
-                              controller.currentStudent.value.displayImage == ''
-                                  ? const AssetImage('images/intern.png')
-                                  : AssetImage(controller
-                                      .currentStudent.value.displayImage))),
+                      child: Image.network(
+                        Static_InternScreen.user_login.url!,
+                        height: 260,
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.fitHeight,
+                      )),
                   Padding(
                     padding: const EdgeInsets.only(right: 50),
                     child: SizedBox(
@@ -116,7 +125,10 @@ class InternScreen extends GetView<BrowseController> {
                                 style: IFYButtons.primaryAltbutton,
                                 child: const Text('Message')),
                             ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  debugPrint(
+                                      controller.currentStudent.value.email);
+                                },
                                 style: IFYButtons.secondaryAltbutton,
                                 child: const Text('Call'))
                           ]),

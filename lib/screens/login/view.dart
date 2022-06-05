@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:internsforyou/screens/browse/views/sign_in.dart';
 import 'package:internsforyou/screens/login/controller.dart';
 import 'package:internsforyou/theme/ify_custom_theme.dart';
 import 'package:internsforyou/utils/routes/app_routes.dart';
@@ -69,7 +70,12 @@ class LoginScreen extends GetView<LoginController> {
                           onPressed: () {
                             if (Static_LoginScreen._formKey.currentState!
                                 .validate()) {
-                              doUserLogin();
+                              Static_LoginScreen.isLoggedIn
+                                  ? null
+                                  : () => doUserLogin();
+                              Sign_in_Success.username_pass = Static_LoginScreen
+                                  .emailController.text
+                                  .trim();
                               debugPrint(
                                   "Username: ${Static_LoginScreen.emailController.text}\nPassword: ${Static_LoginScreen.passwordController.text}");
                               //TODO: Continue if passed
