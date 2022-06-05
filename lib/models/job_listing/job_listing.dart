@@ -33,44 +33,6 @@ class JobListing {
   });
 }
 
-class DisplaySaveGalleryPage extends StatefulWidget {
-  @override
-  _DisplaySaveHomePageState createState() => _DisplaySaveHomePageState();
-}
-
-class _DisplaySaveHomePageState extends State<DisplaySaveGalleryPage> {
-  PickedFile? pickedFile;
-
-  List<ParseObject> results = <ParseObject>[];
-  double selectedDistance = 3000;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            height: 50,
-            child: ElevatedButton(
-              child: Text('Upload File and Finalise'),
-              style: ElevatedButton.styleFrom(primary: Colors.blue),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SaveDataPage()),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    ));
-  }
-}
-
 class SaveDataPage extends StatefulWidget {
   @override
   _SaveDataPageState createState() => _SaveDataPageState();
@@ -97,8 +59,9 @@ class _SaveDataPageState extends State<SaveDataPage> {
                   ? Container(
                       width: 250,
                       height: 250,
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.blue)),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Color.fromARGB(255, 223, 11, 92))),
                       child: kIsWeb
                           ? Image.network(pickedFile!.path)
                           : Image.file(File(pickedFile!.path)))

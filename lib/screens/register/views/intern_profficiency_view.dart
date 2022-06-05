@@ -69,7 +69,7 @@ class UserSkillScreen extends GetView<RegisterController> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DisplaySaveGalleryPage()),
+                                builder: (context) => SaveDataPage()),
                           );
                         },
                       ),

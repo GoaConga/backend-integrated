@@ -56,12 +56,13 @@ class BrowseInternScreen extends GetView<BrowseController> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
+          var width = MediaQuery.of(context).size.width;
           return AlertDialog(
-            title: Text(controller.currentStudent.value.email),
+            title: Text('Search For User'),
             content: Text('Message via Email'),
             actions: <Widget>[
               Container(
-                  padding: EdgeInsets.fromLTRB(17.0, 1.0, 7.0, 1.0),
+                  width: width,
                   child: Row(
                     children: <Widget>[
                       DropdownButton(
@@ -110,6 +111,7 @@ class BrowseInternScreen extends GetView<BrowseController> {
               new TextButton(
                 child: const Text("OK"),
                 onPressed: () {
+                  doQueryByName;
                   Navigator.of(context).pop();
                 },
               ),
@@ -231,7 +233,9 @@ class BrowseInternScreen extends GetView<BrowseController> {
                         }
                       })))),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showSearchBar('Serach function');
+        },
         backgroundColor: IFYColors.accentRed,
         child: const Icon(Icons.search),
       ),
@@ -246,7 +250,9 @@ class BrowseInternScreen extends GetView<BrowseController> {
                   style: IFYFonts.introHeader,
                 )),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(AppRoutes.browseInternScreen);
+              },
               leading: const Icon(
                 Icons.search,
                 color: Colors.white,
