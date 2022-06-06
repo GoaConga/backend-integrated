@@ -130,8 +130,10 @@ class LoginScreen extends GetView<LoginController> {
       //showSuccess("User was successfully logout!");
       Static_LoginScreen.isLoggedIn = false;
       debugPrint("User logged out" + Static_LoginScreen.isLoggedIn.toString());
+      Get.toNamed(AppRoutes.loginScreen);
     } else {
       //showError(response.error!.message);
+      debugPrint("User log failed!!!");
     }
   }
 }

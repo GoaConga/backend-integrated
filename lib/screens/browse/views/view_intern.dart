@@ -94,7 +94,7 @@ class InternScreen extends GetView<BrowseController> {
                             CircularProgressIndicator(
                               backgroundColor:
                                   const Color.fromARGB(255, 196, 196, 196),
-                              color: IFYColors.accentRed,
+                              color: Color.fromARGB(255, 0, 225, 255),
                               strokeWidth: 18,
                               value: getScore() / 100,
                             ),

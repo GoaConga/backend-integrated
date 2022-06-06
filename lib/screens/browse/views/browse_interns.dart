@@ -13,7 +13,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 class BrowseInternScreen extends GetView<BrowseController> {
   BrowseInternScreen({Key? key}) : super(key: key);
   List<ParseObject> results = <ParseObject>[];
-  final todo_username_controller = TextEditingController();
+  static final todo_username_controller = TextEditingController();
 
   void doQueryByName() async {
     // Create your query
@@ -46,6 +46,8 @@ class BrowseInternScreen extends GetView<BrowseController> {
   // List of items in our dropdown menu
   var items = [
     'email',
+    'first name',
+    'last name',
     'company',
     'bio',
   ];
@@ -75,14 +77,16 @@ class BrowseInternScreen extends GetView<BrowseController> {
                           );
                         }).toList(),
                         onChanged: (String? newValue) {
+                          //setState(() {
                           dropdownvalue = newValue!;
+                          //});
                         },
                       ),
                       Expanded(
                         child: TextField(
                           autocorrect: true,
                           textCapitalization: TextCapitalization.sentences,
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                           controller: todo_username_controller,
                           decoration: InputDecoration(
                               labelText: "Search for " + dropdownvalue,
@@ -93,23 +97,10 @@ class BrowseInternScreen extends GetView<BrowseController> {
                           width: 88,
                           child: Text('Result:   ${results.length}   ',
                               style: TextStyle(color: Colors.blue))),
-                      ElevatedButton.icon(
-                          icon: Icon(
-                            Icons.search,
-                            color: Color.fromARGB(255, 255, 0, 0),
-                            size: 40.0,
-                          ),
-                          label: Text('Search'),
-                          onPressed: doQueryByName,
-                          style: ElevatedButton.styleFrom(
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(20.0),
-                            ),
-                          ))
                     ],
                   )),
               new TextButton(
-                child: const Text("OK"),
+                child: const Text("Search"),
                 onPressed: () {
                   doQueryByName;
                   Navigator.of(context).pop();

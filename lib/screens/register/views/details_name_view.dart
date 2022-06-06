@@ -31,7 +31,7 @@ class NameDetailsScreen extends GetView<RegisterController> {
                   Column(
                     children: [
                       Text(
-                          '${Static_NameDetailsScreen.isCompany ? 'Company' : 'Personal'} Details',
+                          '${Static_NameDetailsScreen.isCompany ? 'Personal' : 'Personal'} Details',
                           style: IFYFonts.introHeader),
                       Container()
                     ],
@@ -41,8 +41,8 @@ class NameDetailsScreen extends GetView<RegisterController> {
                       Padding(
                           padding: const EdgeInsets.fromLTRB(40, 10, 40, 2),
                           child: primaryTextField(
-                              '${Static_NameDetailsScreen.isCompany ? 'company' : 'first'} name',
-                              '${Static_NameDetailsScreen.isCompany ? 'company' : 'first'} name',
+                              '${Static_NameDetailsScreen.isCompany ? 'first' : 'first'} name',
+                              '${Static_NameDetailsScreen.isCompany ? 'first' : 'first'} name',
                               false,
                               Static_NameDetailsScreen.firstnameController,
                               TextInputType.text,
@@ -62,12 +62,12 @@ class NameDetailsScreen extends GetView<RegisterController> {
                       Padding(
                           padding: const EdgeInsets.fromLTRB(40, 10, 40, 2),
                           child: primaryTextField(
-                              '${Static_NameDetailsScreen.isCompany ? 'company' : 'personal'} bio',
-                              'bio',
+                              '${Static_NameDetailsScreen.isCompany ? 'last' : 'personal'} name',
+                              'last name',
                               false,
                               Static_NameDetailsScreen.lastnameController,
-                              TextInputType.multiline,
-                              5,
+                              TextInputType.text,
+                              1,
                               200)),
                     ],
                   ),

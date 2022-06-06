@@ -16,12 +16,11 @@ class Student {
   String displayImage;
   late int score;
 
-  Student({
-    this.firstName = 'John',
-    this.lastName = 'Smith',
-    this.bio = 'Placeholder bio',
-    this.score = 0,
-    this.skills = const [],
-    this.displayImage = 'images/intern.png'
-  });
+  Student(
+      {this.firstName = 'John',
+      this.lastName = 'Smith',
+      this.bio = 'Placeholder bio',
+      this.score = 0,
+      this.skills = const [],
+      this.displayImage = 'images/intern.png'});
 }
